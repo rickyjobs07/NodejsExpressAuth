@@ -2,7 +2,7 @@ const express = require('express');
 const postsController = require('../controllers/postsController');
 const router = express.Router();
 
-router.get('/all-posts', postsController.allPosts);
+router.get('/all-posts', postsController.getPosts);
 router.get('/single-post', postsController.singlePost);
 router.post('/create-post', postsController.createPost);
 router.put('/update-post', postsController.updatePost);

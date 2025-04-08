@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');//Middleware que permite leer y ge
 const mongoose = require('mongoose');
 
 const authRouter = require('./routers/authRouter');
-const postRouter = require('./routers/postsRouter');
+const postsRouter = require('./routers/postsRouter');
 
 const app = express();//Se crea una instancia de Express para configurar rutas y middlewares.
 
@@ -27,7 +27,7 @@ app.get('/', (req,res) => {
 });
 
 app.use('/api/auth', authRouter);
-app.use('/api/post', postRouter);
+app.use('/api/post', postsRouter);
 
 app.listen(process.env.PORT, () => {
     console.log('listening')
