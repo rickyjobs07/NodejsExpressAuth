@@ -7,6 +7,10 @@ const mongoose = require('mongoose');
 const authRouter = require('./routers/authRouter');
 const postsRouter = require('./routers/postsRouter');
 
+//Swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swaggerOptions');
+
 const app = express();//Se crea una instancia de Express para configurar rutas y middlewares.
 
 app.use(cors());
@@ -19,8 +23,10 @@ app.use(express.urlencoded({ extended: true}));// Express convierte automáticam
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("Database connected");
 }).catch(err => {
-    console.log(err)
+    console.log("Error while connecting to the database.",err)
 })
+
+app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('/', (req,res) => {
     res.json({message: "Hello from the server"});
@@ -30,5 +36,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/post', postsRouter);
 
 app.listen(process.env.PORT, () => {
-    console.log('listening')
+    console.log('Listening in port: ' + process.env.PORT);
+    console.log(`Swagger docs available at http://localhost:${process.env.PORT}/api/api-docs`);
 });
