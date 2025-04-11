@@ -20,3 +20,9 @@ Este proyecto es una API RESTful para la gestión de publicaciones (posts), crea
 git clone https://github.com/tu-usuario/tu-repo.git
 cd tu-repo
 npm install
+
+👨‍💻 Autor
+Ricky Montero Terrero
+💼 Ingeniero de Software
+🌍 República Dominicana
+📧 rickymonterojobs07@gmail.com
