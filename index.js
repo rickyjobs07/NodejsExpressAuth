@@ -5,7 +5,11 @@ const cookieParser = require('cookie-parser');//Middleware que permite leer y ge
 const mongoose = require('mongoose');
 
 const authRouter = require('./routers/authRouter');
-const postRouter = require('./routers/postsRouter');
+const postsRouter = require('./routers/postsRouter');
+
+//Swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swaggerOptions');
 
 const app = express();//Se crea una instancia de Express para configurar rutas y middlewares.
 
@@ -19,16 +23,21 @@ app.use(express.urlencoded({ extended: true}));// Express convierte automáticam
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("Database connected");
 }).catch(err => {
-    console.log(err)
+    console.log("Error while connecting to the database.",err)
 })
+
+app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('/', (req,res) => {
     res.json({message: "Hello from the server"});
 });
 
 app.use('/api/auth', authRouter);
-app.use('/api/post', postRouter);
+app.use('/api/posts', postsRouter);
 
-app.listen(process.env.PORT, () => {
-    console.log('listening')
+const PORT = process.env.PORT || '8000';
+
+app.listen(PORT, () => {
+    console.log('Listening in port: ' + PORT);
+    console.log(`Swagger docs available at http://localhost:${PORT}/api/api-docs`);
 });
