@@ -33,9 +33,11 @@ app.get('/', (req,res) => {
 });
 
 app.use('/api/auth', authRouter);
-app.use('/api/post', postsRouter);
+app.use('/api/posts', postsRouter);
 
-app.listen(process.env.PORT, () => {
-    console.log('Listening in port: ' + process.env.PORT);
-    console.log(`Swagger docs available at http://localhost:${process.env.PORT}/api/api-docs`);
+const PORT = process.env.PORT || '8000';
+
+app.listen(PORT, () => {
+    console.log('Listening in port: ' + PORT);
+    console.log(`Swagger docs available at http://localhost:${PORT}/api/api-docs`);
 });
