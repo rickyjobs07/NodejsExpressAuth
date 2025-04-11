@@ -2,6 +2,8 @@
 
 Este proyecto es una API RESTful para la gestión de publicaciones (posts), creada con Node.js, Express y MongoDB. Permite operaciones CRUD y está lista para ser desplegada en Render.
 
+https://nodejsexpressauthapi.onrender.com/api/api-docs/
+
 ## 🚀 Endpoints
 
 | Método | Endpoint              | Descripción                     | Autenticación |
