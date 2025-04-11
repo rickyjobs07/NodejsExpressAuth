@@ -115,8 +115,24 @@ exports.sendVerificationCode = async (req,res) => {
             from: process.env.NODE_SENDING_EMAIL,
             to: existingUser.email,
             subject: "Verification Code",
-            html: '<h1>' + codeValue + '</h1>'
-        });
+            html: `
+            <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+              <div style="max-width: 500px; margin: auto; background-color: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h2 style="color: #333;">🔎 Email Verification</h2>
+                <p style="color: #555;">
+                  Thank you for registering! To verify your email address, please use the code below:
+                </p>
+                <div style="text-align: center; margin: 30px 0;">
+                  <span style="display: inline-block; background-color: #28a745; color: white; padding: 15px 30px; border-radius: 6px; font-size: 24px; letter-spacing: 2px;">
+                    ${codeValue}
+                  </span>
+                </div>
+                <p style="color: #999; font-size: 14px;">
+                  This code is valid for 5 minutes. If you didn’t request this, you can safely ignore this message.
+                </p>
+              </div>
+            </div>
+          `});
 
         if (info.accepted[0] === existingUser.email) {
             const hashedCodeValue = hmacProcess(codeValue, process.env.HMAC_VERIFICATION_CODE);
@@ -232,8 +248,24 @@ exports.sendForgotPasswordCode = async (req,res) => {
             from: process.env.NODE_SENDING_EMAIL,
             to: existingUser.email,
             subject: "Forgot Password Code",
-            html: '<h1>' + codeValue + '</h1>'
-        });
+            html: `
+            <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+              <div style="max-width: 500px; margin: auto; background-color: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h2 style="color: #333;">🔐 Forgot Your Password?</h2>
+                <p style="color: #555;">
+                  We received a request to reset your password. Use the code below to proceed:
+                </p>
+                <div style="text-align: center; margin: 30px 0;">
+                  <span style="display: inline-block; background-color: #007bff; color: white; padding: 15px 30px; border-radius: 6px; font-size: 24px; letter-spacing: 2px;">
+                    ${codeValue}
+                  </span>
+                </div>
+                <p style="color: #999; font-size: 14px;">
+                  This code will expire in 5 minutes. If you didn't request a password reset, please ignore this message.
+                </p>
+              </div>
+            </div>
+          `});
 
         if (info.accepted[0] === existingUser.email) {
             const hashedCodeValue = hmacProcess(codeValue, process.env.HMAC_VERIFICATION_CODE);

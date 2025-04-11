@@ -8,6 +8,8 @@ exports.identifier = (req, res, next) => {
         token = req.cookies['Authorization'];
     }
 
+    console.log('Este es mi token: ' + token);
+
     if (!token) {
         return res.status(402).json({success: false, message: 'Unauthorized'});
     }
