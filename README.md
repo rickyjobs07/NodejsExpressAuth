@@ -1,27 +1,22 @@
-NodejsExpressAuth es un sistema de autenticación básico desarrollado con Node.js y Express. Este proyecto proporciona una estructura inicial para implementar funcionalidades de registro, inicio de sesión y gestión de usuarios, utilizando middlewares para la validación y seguridad.
+# 📝 API de Posts con Node.js, Express y MongoDB
 
-Características Principales
-Autenticación de Usuarios: Registro e inicio de sesión con credenciales.
+Este proyecto es una API RESTful para la gestión de publicaciones (posts), creada con Node.js, Express y MongoDB. Permite operaciones CRUD y está lista para ser desplegada en Render.
 
-Estructura Modular: Organización clara en carpetas como controllers, middlewares, models, y routers.
+## 🚀 Endpoints
 
-Seguridad Básica: Uso de middlewares para proteger rutas y validar datos.
+| Método | Endpoint              | Descripción                     | Autenticación |
+|--------|------------------------|----------------------------------|----------------|
+| GET    | `/api/posts/all-posts`    | Obtener todos los posts         | ❌ No requerida |
+| GET    | `/api/posts/single-post?id=<postId>` | Obtener un solo post por ID | ❌ No requerida |
+| POST   | `/api/posts/create-post`  | Crear un nuevo post             | ✅ Requerida    |
+| PUT    | `/api/posts/update-post`  | Actualizar un post              | ✅ Requerida    |
+| DELETE | `/api/posts/delete-post?id=<postId>` | Eliminar un post           | ❌ No requerida |
 
-Fácil Configuración: Archivos package.json y index.js listos para personalizar.
+---
 
-Instalación
-Clona el repositorio:
+## 📦 Instalación
 
-bash
-Copy
-git clone https://github.com/tu-usuario/NodejsExpressAuth.git
-Instala las dependencias:
-
-bash
-Copy
+```bash
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
 npm install
-Inicia el servidor:
-
-bash
-Copy
-node index.js
