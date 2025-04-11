@@ -19,6 +19,10 @@ const swaggerDefinition = {
       url: 'http://localhost:8000/api',
       description: 'Servidor local de desarrollo',
     },
+    {
+      url: 'https://nodejsexpressauthapi.onrender.com/api',
+      description: 'Servidor de producción Render',
+    },
   ],
   components: {
     securitySchemes: {
