@@ -13,7 +13,15 @@ const swaggerSpec = require('./config/swaggerOptions');
 
 const app = express();//Se crea una instancia de Express para configurar rutas y middlewares.
 
-app.use(cors());
+app.options('*', cors()); // Responde a todas las OPTIONS
+
+
+// Configuración de CORS global
+app.use(cors({
+    origin: '*', // Permite todas las URLs (puedes poner una lista específica si prefieres)
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
 app.use(helmet());
 app.use(cookieParser());
 app.use(express.json()); //permite que la API pueda recibir datos en formato JSON en las peticiones POST o PUT.
